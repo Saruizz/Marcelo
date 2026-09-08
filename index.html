@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Regalos · Baby Shower de Marcelo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --stripe-light: #eef0e8;
+    --stripe-blue: #b7c9dc;
+    --ink: #33465e;
+    --ink-soft: #55677f;
+    --cream: #faf8f2;
+    --gold: #cbb98a;
+    --card: #ffffff;
+    --taken-bg: #eef2ee;
+    --taken-ink: #6f8677;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Jost', sans-serif;
+    color:var(--ink);
+    background:
+      repeating-linear-gradient(90deg,
+        var(--stripe-light) 0px, var(--stripe-light) 26px,
+        var(--stripe-blue) 26px, var(--stripe-blue) 52px);
+    min-height:100vh;
+  }
+  .frame{
+    max-width:760px;
+    margin:28px auto;
+    background:var(--cream);
+    border:3px solid var(--stripe-blue);
+    border-radius:80px 80px 60px 60px / 60px 60px 40px 40px;
+    padding:56px 34px 46px;
+    position:relative;
+    box-shadow:0 10px 40px rgba(60,80,110,0.15);
+  }
+  .ribbon{
+    position:absolute;
+    top:-26px;
+    left:38px;
+    width:70px;
+    height:70px;
+    background: linear-gradient(135deg, #9fb6d0, #7d97b8);
+    border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg);
+    box-shadow:0 4px 10px rgba(60,80,110,0.25);
+  }
+  header{
+    text-align:center;
+    margin-bottom:8px;
+  }
+  .eyebrow{
+    letter-spacing:0.35em;
+    font-size:13px;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    font-weight:500;
+  }
+  h1.script{
+    font-family:'Alex Brush', cursive;
+    font-size:64px;
+    color:var(--ink);
+    margin:2px 0 4px;
+    font-weight:400;
+  }
+  .sub{
+    font-family:'Cormorant Garamond', serif;
+    font-size:24px;
+    letter-spacing:0.08em;
+    color:var(--ink);
+    text-transform:uppercase;
+    margin:0 0 22px;
+  }
+  .event-card{
+    text-align:center;
+    font-family:'Cormorant Garamond', serif;
+    font-size:19px;
+    color:var(--ink-soft);
+    border-top:1px solid var(--gold);
+    border-bottom:1px solid var(--gold);
+    padding:14px 0;
+    margin-bottom:30px;
+    line-height:1.6;
+  }
+  .event-card b{color:var(--ink);}
+  .intro{
+    text-align:center;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:20px;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+    padding:0 10px;
+  }
+  .note{
+    text-align:center;
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-bottom:34px;
+  }
+
+  .gifts-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+    gap:18px;
+  }
+  .gift{
+    background:var(--card);
+    border:1px solid #e1e7ee;
+    border-radius:18px;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    box-shadow:0 4px 14px rgba(60,80,110,0.06);
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .gift:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 22px rgba(60,80,110,0.12);
+  }
+  .gift-title{
+    font-family:'Cormorant Garamond', serif;
+    font-size:21px;
+    font-weight:600;
+    margin:0 0 6px;
+    color:var(--ink);
+    line-height:1.2;
+  }
+  .gift-desc{
+    font-size:13px;
+    color:var(--ink-soft);
+    margin:0 0 16px;
+    flex:1;
+    line-height:1.45;
+  }
+
+  .claimed-by{
+    font-size:12px;
+    font-weight:500;
+    color:var(--taken-ink);
+    margin-bottom:10px;
+    min-height:16px;
+  }
+
+  .actions{
+    display:flex;
+    gap:8px;
+    align-items:center;
+  }
+  .gift-link{
+    display:inline-block;
+    padding:8px 12px;
+    border-radius:20px;
+    border:1px solid var(--stripe-blue);
+    color:var(--ink);
+    text-decoration:none;
+    font-size:12px;
+    font-weight:500;
+    background:#fff;
+    transition:all 0.15s ease;
+    text-align:center;
+  }
+  .gift-link:hover{
+    background:var(--stripe-blue);
+    color:#fff;
+  }
+  .claim-btn{
+    flex:1;
+    padding:8px 12px;
+    border-radius:20px;
+    border:none;
+    background: linear-gradient(135deg, #9fb6d0, #7d97b8);
+    color:#fff;
+    font-size:13px;
+    font-weight:500;
+    cursor:pointer;
+    font-family:inherit;
+    box-shadow:0 2px 6px rgba(125,151,184,0.3);
+    transition:all 0.15s ease;
+  }
+  .claim-btn:hover{
+    filter:brightness(0.95);
+    transform:scale(1.02);
+  }
+
+  /* Estado Reservado */
+  .gift.taken{
+    background:var(--taken-bg);
+    border-color:#c8d8cb;
+  }
+  .gift.taken .gift-title{
+    color:#4d5f52;
+    text-decoration:line-through;
+    opacity:0.75;
+  }
+  .gift.taken .gift-desc{
+    opacity:0.7;
+  }
+  .gift.taken .unclaim-btn{
+    background:transparent;
+    border:1px solid #a3b8a7;
+    color:#4d5f52;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:11px;
+    cursor:pointer;
+    margin-left:auto;
+  }
+  .gift.taken .unclaim-btn:hover{
+    background:#dbf0de;
+  }
+
+  /* Formulario de reserva */
+  .claim-form{
+    margin-top:10px;
+    padding-top:10px;
+    border-top:1px dashed #c0d0e0;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .claim-input{
+    padding:8px 12px;
+    border:1px solid #b7c9dc;
+    border-radius:10px;
+    font-size:13px;
+    font-family:inherit;
+    outline:none;
+  }
+  .claim-input:focus{
+    border-color:var(--ink);
+  }
+  .save-btn{
+    padding:7px;
+    border:none;
+    background:var(--ink);
+    color:#fff;
+    border-radius:10px;
+    font-size:12px;
+    cursor:pointer;
+    font-family:inherit;
+  }
+  .cancel-btn{
+    padding:5px;
+    border:none;
+    background:transparent;
+    color:var(--ink-soft);
+    font-size:11px;
+    cursor:pointer;
+    font-family:inherit;
+  }
+
+  .loading-box{
+    text-align:center;
+    padding:40px;
+    color:var(--ink-soft);
+    font-family:'Cormorant Garamond', serif;
+    font-size:22px;
+  }
+  .error-msg{
+    color:#b33939;
+    font-size:11px;
+    margin-top:4px;
+  }
+  .confirm-row{
+    font-size:11px;
+    color:var(--ink-soft);
+    margin-top:6px;
+  }
+  .confirm-row button{
+    font-size:11px;
+    margin-left:4px;
+    padding:2px 6px;
+    border-radius:4px;
+    border:1px solid #ccc;
+    cursor:pointer;
+  }
+
+  @media (max-width:600px){
+    .frame{
+      margin:10px;
+      padding:36px 18px 28px;
+      border-radius:40px;
+    }
+    h1.script{font-size:52px;}
+    .sub{font-size:20px;}
+    .ribbon{
+      width:50px;
+      height:50px;
+      top:-18px;
+      left:20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="frame">
+    <div class="ribbon"></div>
+
+    <header>
+      <div class="eyebrow">Mesa de Regalos</div>
+      <h1 class="script">Baby Shower</h1>
+      <div class="sub">Marcelo</div>
+    </header>
+
+    <div class="event-card">
+      Sábado 28 de Septiembre · 4:00 PM<br>
+      <b>Casa de los Abuelos</b> · Calle Principal #123
+    </div>
+
+    <div class="intro">
+      "Tu presencia es nuestro mejor regalo. Si deseas obsequiarnos algo más, aquí tienes algunas ideas."
+    </div>
+    <div class="note">
+      Por favor, marca el regalo que selecciones para evitar duplicados.
+    </div>
+
+    <div id="loading" class="loading-box">Cargando lista de regalos...</div>
+
+    <div class="gifts-grid" id="gifts-container" style="display:none;">
+
+      <div class="gift" data-id="coche">
+        <h3 class="gift-title">Coche Paseador</h3>
+        <p class="gift-desc">Ligero, plegable, color neutro o azul.</p>
+
+        <div class="claimed-by"></div>
+        <div class="actions">
+          <a href="https://articulo.mercadolibre.com.co" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <button class="claim-btn">Reservar</button>
+        </div>
+      </div>
+
+      <div class="gift" data-id="cuna">
+        <h3 class="gift-title">Cuna Colecho</h3>
+        <p class="gift-desc">Ajustable a la cama, con mosquitero.</p>
+
+        <div class="claimed-by"></div>
+        <div class="actions">
+          <a href="https://articulo.mercadolibre.com.co" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <button class="claim-btn">Reservar</button>
+        </div>
+      </div>
+
+      <div class="gift" data-id="banera">
+        <h3 class="gift-title">Bañera Cambiador</h3>
+        <p class="gift-desc">Plegable con manguera de desagüe.</p>
+
+        <div class="claimed-by"></div>
+        <div class="actions">
+          <a href="https://articulo.mercadolibre.com.co" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <button class="claim-btn">Reservar</button>
+        </div>
+      </div>
+
+      <div class="gift" data-id="monitor">
+        <h3 class="gift-title">Monitor de Bebé</h3>
+        <p class="gift-desc">Con cámara visión nocturna y audio bidireccional.</p>
+
+        <div class="claimed-by"></div>
+        <div class="actions">
+          <a href="https://articulo.mercadolibre.com.co" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <button class="claim-btn">Reservar</button>
+        </div>
+      </div>
+
+      <div class="gift" data-id="set-ropa-1">
+        <h3 class="gift-title">Set de Bodies (0-3M)</h3>
+        <p class="gift-desc">Packs de 5 bodies manga corta/larga 100% algodón.</p>
+
+        <div class="claimed-by"></div>
+        <div class="actions">
+          <a href="https://articulo.mercadolibre.com.co" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <button class="claim-btn">Reservar</button>
+        </div>
+      </div>
+
+      <div class="gift" data-id="set-ropa-2">
+        <h3 class="gift-title">Pijamas Enterizas (3-6M)</h3>
+        <p class="gift-desc">Con cremallera bidireccional y cremallera con protector.</p>
+
+        <div class="claimed-by"></div>
+        <div class="actions">
+          <a href="https://articulo.mercadolibre.com.co" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <button class="claim-btn">Reservar</button>
+        </div>
+      </div>
+
+      <div class="gift" data-id="panales-1">
+        <h3 class="gift-title">Pañales Etapa RN / 1</h3>
+        <p class="gift-desc">Pampers o Huggies (Cualquier cantidad es bienvenida).</p>
+
+        <div class="claimed-by"></div>
+        <div class="actions">
+          <a href="https://articulo.mercadolibre.com.co" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <button class="claim-btn">Reservar</button>
+        </div>
+      </div>
+
+      <div class="gift" data-id="panales-2">
+        <h3 class="gift-title">Pañales Etapa 2 / 3</h3>
+        <p class="gift-desc">Para cuando crezca un poquito más 💙</p>
+
+        <div class="claimed-by"></div>
+        <div class="actions">
+          <a href="https://articulo.mercadolibre.com.co" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <button class="claim-btn">Reservar</button>
+        </div>
+      </div>
+
+      <div class="gift" data-id="toallas">
+        <h3 class="gift-title">Kit de Toallas con Capucha</h3>
+        <p class="gift-desc">Suaves de microfibra o bambú + franelitas.</p>
+
+        <div class="claimed-by"></div>
+        <div class="actions">
+          <a href="https://articulo.mercadolibre.com.co" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <button class="claim-btn">Reservar</button>
+        </div>
+      </div>
+
+      <div class="gift" data-id="extractor">
+        <h3 class="gift-title">Extractor de Leche Eléctrico</h3>
+        <p class="gift-desc">Manos libres, recargable.</p>
+
+        <div class="claimed-by"></div>
+        <div class="actions">
+          <a href="https://articulo.mercadolibre.com.co" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <button class="claim-btn">Reservar</button>
+        </div>
+      </div>
+
+      <div class="gift" data-id="esterilizador">
+        <h3 class="gift-title">Esterilizador de Biberones</h3>
+        <p class="gift-desc">Para microondas o eléctrico a vapor.</p>
+
+        <div class="claimed-by"></div>
+        <div class="actions">
+          <a href="https://articulo.mercadolibre.com.co" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <button class="claim-btn">Reservar</button>
+        </div>
+      </div>
+
+      <div class="gift" data-id="cojin-lactancia">
+        <h3 class="gift-title">Cojín de Lactancia</h3>
+        <p class="gift-desc">Ergonómico con funda lavable.</p>
+
+        <div class="claimed-by"></div>
+        <div class="actions">
+          <a href="https://articulo.mercadolibre.com.co" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <button class="claim-btn">Reservar</button>
+        </div>
+      </div>
+
+    </div>
+
+    <footer>Con amor, esperando a Marcelo 💙</footer>
+  </div>
+<script>
+  // Storage fallback (localStorage for browsers, window.storage for sandbox environments)
+  if (!window.storage) {
+    window.storage = {
+      async get(key) {
+        const val = localStorage.getItem(key);
+        return val !== null ? { value: val } : null;
+      },
+      async set(key, value) {
+        localStorage.setItem(key, value);
+        return true;
+      }
+    };
+  }
+
+  const STORAGE_KEY = 'regalos-marcelo-reservas';
+  let state = {};
+
+  async function loadState(){
+    try{
+      const result = await window.storage.get(STORAGE_KEY, true);
+      state = result ? JSON.parse(result.value) : {};
+    }catch(e){
+      state = {};
+    }
+    render();
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('gifts-container').style.display = 'grid';
+  }
+
+  // UI mode per gift: 'view' | 'claim-form' | 'confirm-unclaim'
+  let uiMode = {};
+
+  function buildActions(giftEl, id){
+    const actions = giftEl.querySelector('.actions');
+    const claimant = state[id];
+    const mode = uiMode[id] || 'view';
+
+    giftEl.querySelectorAll('.claim-form, .confirm-row, .error-msg').forEach(el => el.remove());
+
+    const viewBtn = actions.querySelector('.gift-link');
+    actions.innerHTML = '';
+    actions.appendChild(viewBtn);
+
+    if(claimant){
+      const unclaimBtn = document.createElement('button');
+      unclaimBtn.className = 'unclaim-btn';
+      unclaimBtn.textContent = 'Liberar';
+      unclaimBtn.onclick = () => { uiMode[id] = 'confirm-unclaim'; renderGift(giftEl, id); };
+      actions.appendChild(unclaimBtn);
+
+      if(mode === 'confirm-unclaim'){
+        const row = document.createElement('div');
+        row.className = 'confirm-row';
+        row.innerHTML = '¿Liberar este regalo para que otra persona lo reserve? ';
+        const yesBtn = document.createElement('button');
+        yesBtn.textContent = 'Sí, liberar';
+        yesBtn.onclick = async () => {
+          delete state[id];
+          uiMode[id] = 'view';
+          await saveState(id, giftEl);
+          renderGift(giftEl, id);
+        };
+        const noBtn = document.createElement('button');
+        noBtn.textContent = 'Cancelar';
+        noBtn.onclick = () => { uiMode[id] = 'view'; renderGift(giftEl, id); };
+        row.appendChild(yesBtn);
+        row.appendChild(noBtn);
+        giftEl.appendChild(row);
+      }
+    } else {
+      const claimBtn = document.createElement('button');
+      claimBtn.className = 'claim-btn';
+      claimBtn.textContent = 'Reservar';
+      claimBtn.onclick = () => { uiMode[id] = 'claim-form'; renderGift(giftEl, id); };
+      actions.appendChild(claimBtn);
+
+      if(mode === 'claim-form'){
+        const form = document.createElement('div');
+        form.className = 'claim-form';
+        const input = document.createElement('input');
+        input.className = 'claim-input';
+        input.type = 'text';
+        input.placeholder = 'Tu nombre';
+        input.maxLength = 40;
+        const saveBtn = document.createElement('button');
+        saveBtn.className = 'save-btn';
+        saveBtn.textContent = 'Guardar';
+        const cancelBtn = document.createElement('button');
+        cancelBtn.className = 'cancel-btn';
+        cancelBtn.textContent = 'Cancelar';
+
+        const doSave = async () => {
+          const name = input.value.trim();
+          if(!name){
+            input.focus();
+            return;
+          }
+          saveBtn.disabled = true;
+          saveBtn.textContent = 'Guardando...';
+          state[id] = name;
+          uiMode[id] = 'view';
+          await saveState(id, giftEl);
+          renderGift(giftEl, id);
+        };
+
+        saveBtn.onclick = doSave;
+        input.addEventListener('keydown', (e) => { if(e.key === 'Enter') doSave(); });
+        cancelBtn.onclick = () => { uiMode[id] = 'view'; renderGift(giftEl, id); };
+
+        form.appendChild(input);
+        form.appendChild(saveBtn);
+        form.appendChild(cancelBtn);
+        giftEl.appendChild(form);
+        setTimeout(() => input.focus(), 0);
+      }
+    }
+  }
+
+  function renderGift(giftEl, id){
+    const claimant = state[id];
+    const claimedByEl = giftEl.querySelector('.claimed-by');
+    if(claimant){
+      giftEl.classList.add('taken');
+      claimedByEl.textContent = 'Reservado por ' + claimant;
+    } else {
+      giftEl.classList.remove('taken');
+      claimedByEl.textContent = '';
+    }
+    buildActions(giftEl, id);
+  }
+
+  function render(){
+    document.querySelectorAll('.gift').forEach(giftEl => {
+      const id = giftEl.getAttribute('data-id');
+      renderGift(giftEl, id);
+    });
+  }
+
+  async function saveState(id, giftEl){
+    try{
+      const result = await window.storage.set(STORAGE_KEY, JSON.stringify(state), true);
+      if(!result && giftEl){
+        const err = document.createElement('p');
+        err.className = 'error-msg';
+        err.textContent = 'No se pudo guardar la reserva. Intenta de nuevo.';
+        giftEl.appendChild(err);
+      }
+    }catch(e){
+      if(giftEl){
+        const err = document.createElement('p');
+        err.className = 'error-msg';
+        err.textContent = 'No se pudo guardar la reserva. Intenta de nuevo.';
+        giftEl.appendChild(err);
+      }
+    }
+  }
+
+  loadState();
+</script>
+</body>
+</html>
