@@ -1,14 +1,13 @@
-# Imagen base ultraligera Nginx Alpine para producción
-FROM nginx:alpine
+FROM node:20-alpine
 
-# Eliminar los archivos estáticos por defecto de Nginx
-RUN rm -rf /usr/share/nginx/html/*
+WORKDIR /app
 
-# Copiar el sitio web estático al directorio publico de Nginx
-COPY . /usr/share/nginx/html/
+COPY package*.json ./
+RUN npm install --production
 
-# Exponer el puerto 80 para Coolify / Nginx Reverse Proxy
-EXPOSE 80
+COPY . .
 
-# Ejecutar Nginx en primer plano
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 3000
+ENV PORT=3000
+
+CMD ["node", "server.js"]
