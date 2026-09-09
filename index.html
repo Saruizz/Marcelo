@@ -99,361 +99,354 @@
   }
   .note{
     text-align:center;
-    font-size:13px;
+    font-size:12px;
     color:var(--ink-soft);
-    margin-bottom:34px;
+    margin-bottom:30px;
+    opacity:0.85;
   }
-
-  .gifts-grid{
+  .gifts{
     display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns:1fr;
     gap:18px;
   }
   .gift{
     background:var(--card);
-    border:1px solid #e1e7ee;
-    border-radius:18px;
-    padding:18px;
+    border-radius:16px;
+    padding:16px 18px;
     display:flex;
-    flex-direction:column;
-    position:relative;
-    box-shadow:0 4px 14px rgba(60,80,110,0.06);
-    transition:transform 0.2s ease, box-shadow 0.2s ease;
+    align-items:center;
+    gap:16px;
+    box-shadow:0 3px 10px rgba(60,80,110,0.08);
+    border:1px solid #e7e2d3;
+    transition:all 0.2s ease;
+    flex-wrap:wrap;
   }
-  .gift:hover{
-    transform:translateY(-2px);
-    box-shadow:0 8px 22px rgba(60,80,110,0.12);
+  .gift.taken{
+    background:var(--taken-bg);
+    border-color:#d7e0d9;
   }
-  .gift-title{
+  .bootie{
+    flex:0 0 auto;
+    font-size:26px;
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    background:var(--stripe-light);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .gift.taken .bootie{ background:#e2e9e3; filter:grayscale(0.4); opacity:0.7; }
+  .gift-body{flex:1 1 180px;}
+  .gift-name{
     font-family:'Cormorant Garamond', serif;
-    font-size:21px;
     font-weight:600;
-    margin:0 0 6px;
+    font-size:19px;
     color:var(--ink);
-    line-height:1.2;
+    margin:0 0 3px;
   }
-  .gift-desc{
+  .gift.taken .gift-name{ color:var(--taken-ink); text-decoration:line-through; text-decoration-color:#b9c9bd; }
+  .gift-price{
     font-size:13px;
-    color:var(--ink-soft);
-    margin:0 0 16px;
-    flex:1;
-    line-height:1.45;
-  }
-
-  .claimed-by{
-    font-size:12px;
+    color:var(--gold);
     font-weight:500;
-    color:var(--taken-ink);
-    margin-bottom:10px;
-    min-height:16px;
+    letter-spacing:0.03em;
   }
-
+  .gift-price span{color:var(--ink-soft); font-weight:400;}
+  .claimed-by{
+    font-size:13px;
+    color:var(--taken-ink);
+    font-style:italic;
+    margin-top:4px;
+  }
   .actions{
+    flex:0 0 auto;
     display:flex;
     gap:8px;
     align-items:center;
   }
   .gift-link{
-    display:inline-block;
-    padding:8px 12px;
-    border-radius:20px;
-    border:1px solid var(--stripe-blue);
-    color:var(--ink);
     text-decoration:none;
     font-size:12px;
-    font-weight:500;
-    background:#fff;
-    transition:all 0.15s ease;
-    text-align:center;
-  }
-  .gift-link:hover{
-    background:var(--stripe-blue);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
     color:#fff;
+    background:var(--ink);
+    padding:9px 16px;
+    border-radius:30px;
+    white-space:nowrap;
+    border:none;
+    cursor:pointer;
+    font-family:'Jost', sans-serif;
   }
   .claim-btn{
-    flex:1;
-    padding:8px 12px;
-    border-radius:20px;
-    border:none;
-    background: linear-gradient(135deg, #9fb6d0, #7d97b8);
-    color:#fff;
-    font-size:13px;
-    font-weight:500;
+    font-family:'Jost', sans-serif;
+    font-size:12px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink);
+    background:#fff;
+    border:1.5px solid var(--stripe-blue);
+    padding:8px 14px;
+    border-radius:30px;
     cursor:pointer;
-    font-family:inherit;
-    box-shadow:0 2px 6px rgba(125,151,184,0.3);
-    transition:all 0.15s ease;
+    white-space:nowrap;
   }
-  .claim-btn:hover{
-    filter:brightness(0.95);
-    transform:scale(1.02);
+  .claim-btn:hover{ background:var(--stripe-light); }
+  .claim-btn:disabled{
+    cursor:default;
+    opacity:0.6;
+    border-color:#d7e0d9;
   }
-
-  /* Estado Reservado */
-  .gift.taken{
-    background:var(--taken-bg);
-    border-color:#c8d8cb;
-  }
-  .gift.taken .gift-title{
-    color:#4d5f52;
-    text-decoration:line-through;
-    opacity:0.75;
-  }
-  .gift.taken .gift-desc{
-    opacity:0.7;
-  }
-  .gift.taken .unclaim-btn{
-    background:transparent;
-    border:1px solid #a3b8a7;
-    color:#4d5f52;
-    padding:6px 12px;
-    border-radius:20px;
+  .unclaim-btn{
     font-size:11px;
+    color:var(--ink-soft);
+    background:none;
+    border:none;
+    text-decoration:underline;
     cursor:pointer;
-    margin-left:auto;
+    padding:0;
   }
-  .gift.taken .unclaim-btn:hover{
-    background:#dbf0de;
+  footer{
+    text-align:center;
+    margin-top:40px;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:17px;
+    color:var(--ink-soft);
   }
-
-  /* Formulario de reserva */
+  .loading{ text-align:center; font-size:13px; color:var(--ink-soft); margin-bottom:20px; }
   .claim-form{
-    margin-top:10px;
-    padding-top:10px;
-    border-top:1px dashed #c0d0e0;
+    flex:1 1 100%;
     display:flex;
-    flex-direction:column;
     gap:8px;
+    margin-top:10px;
+    align-items:center;
   }
   .claim-input{
+    flex:1 1 auto;
+    font-family:'Jost', sans-serif;
+    font-size:14px;
     padding:8px 12px;
-    border:1px solid #b7c9dc;
-    border-radius:10px;
-    font-size:13px;
-    font-family:inherit;
+    border-radius:20px;
+    border:1.5px solid var(--stripe-blue);
     outline:none;
   }
-  .claim-input:focus{
-    border-color:var(--ink);
-  }
+  .claim-input:focus{ border-color:var(--ink); }
   .save-btn{
-    padding:7px;
-    border:none;
-    background:var(--ink);
-    color:#fff;
-    border-radius:10px;
+    font-family:'Jost', sans-serif;
     font-size:12px;
-    cursor:pointer;
-    font-family:inherit;
-  }
-  .cancel-btn{
-    padding:5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:#fff;
+    background:var(--ink);
     border:none;
-    background:transparent;
-    color:var(--ink-soft);
-    font-size:11px;
+    padding:8px 14px;
+    border-radius:20px;
     cursor:pointer;
-    font-family:inherit;
+    white-space:nowrap;
   }
-
-  .loading-box{
-    text-align:center;
-    padding:40px;
+  .save-btn:disabled{ opacity:0.6; cursor:default; }
+  .cancel-btn{
+    font-size:12px;
     color:var(--ink-soft);
-    font-family:'Cormorant Garamond', serif;
-    font-size:22px;
-  }
-  .error-msg{
-    color:#b33939;
-    font-size:11px;
-    margin-top:4px;
+    background:none;
+    border:none;
+    text-decoration:underline;
+    cursor:pointer;
+    white-space:nowrap;
   }
   .confirm-row{
-    font-size:11px;
+    flex:1 1 100%;
+    margin-top:8px;
+    font-size:13px;
     color:var(--ink-soft);
-    margin-top:6px;
+    display:flex;
+    gap:10px;
+    align-items:center;
   }
   .confirm-row button{
-    font-size:11px;
-    margin-left:4px;
-    padding:2px 6px;
-    border-radius:4px;
-    border:1px solid #ccc;
+    font-size:12px;
+    border:none;
+    background:none;
+    text-decoration:underline;
     cursor:pointer;
+    color:var(--ink);
+    padding:0;
+  }
+  .error-msg{
+    flex:1 1 100%;
+    font-size:12px;
+    color:#a35b4a;
+    margin-top:4px;
   }
 
-  @media (max-width:600px){
-    .frame{
-      margin:10px;
-      padding:36px 18px 28px;
-      border-radius:40px;
-    }
-    h1.script{font-size:52px;}
-    .sub{font-size:20px;}
-    .ribbon{
-      width:50px;
-      height:50px;
-      top:-18px;
-      left:20px;
-    }
+  @media (max-width:480px){
+    .frame{padding:44px 16px 32px; border-radius:50px;}
+    h1.script{font-size:48px;}
   }
 </style>
 </head>
 <body>
-
   <div class="frame">
     <div class="ribbon"></div>
-
     <header>
-      <div class="eyebrow">Mesa de Regalos</div>
-      <h1 class="script">Baby Shower</h1>
-      <div class="sub">Marcelo</div>
+      <div class="eyebrow">Un dulce baby boy está en camino</div>
+      <h1 class="script">Marcelo</h1>
+      <div class="sub">Lista de Regalos</div>
     </header>
 
     <div class="event-card">
-      Sábado 28 de Septiembre · 4:00 PM<br>
-      <b>Casa de los Abuelos</b> · Calle Principal #123
+      Sábado 14 de noviembre<br>
+      <b>Cabaña El Santuario</b> · Barranquilla
     </div>
 
-    <div class="intro">
-      "Tu presencia es nuestro mejor regalo. Si deseas obsequiarnos algo más, aquí tienes algunas ideas."
-    </div>
-    <div class="note">
-      Por favor, marca el regalo que selecciones para evitar duplicados.
-    </div>
+    <p class="intro">Con todo el cariño, aquí les dejamos algunas ideas para acompañar la llegada de Marcelo. ¡Gracias por celebrar con nosotros!</p>
+    <p class="note">Toca "Ver" para abrir el producto en la tienda, o "Reservar" para apartarlo con tu nombre y evitar que se repita.</p>
 
-    <div id="loading" class="loading-box">Cargando lista de regalos...</div>
+    <div id="loading" class="loading">Cargando lista...</div>
 
-    <div class="gifts-grid" id="gifts-container" style="display:none;">
+    <div class="gifts" id="gifts-container" style="display:none;">
 
-      <div class="gift" data-id="coche">
-        <h3 class="gift-title">Coche Paseador</h3>
-        <p class="gift-desc">Ligero, plegable, color neutro o azul.</p>
-
-        <div class="claimed-by"></div>
+      <div class="gift" data-id="g1">
+        <div class="bootie">🚼</div>
+        <div class="gift-body">
+          <p class="gift-name">Coche paseador Frezzio, PRIORI</p>
+          <p class="gift-price">$699.900 <span>· Falabella</span></p>
+          <p class="claimed-by"></p>
+        </div>
         <div class="actions">
-          <a href="https://listado.mercadolibre.com.co/coche-paseador-bebe" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <a class="gift-link" href="https://www.falabella.com.co/falabella-co/product/883695735/coche-frezzio-para-bebe-rosa-y-bronce/883695735" target="_blank" rel="noopener">Ver</a>
           <button class="claim-btn">Reservar</button>
         </div>
       </div>
 
-      <div class="gift" data-id="cuna">
-        <h3 class="gift-title">Cuna Colecho</h3>
-        <p class="gift-desc">Ajustable a la cama, con mosquitero.</p>
-
-        <div class="claimed-by"></div>
+      <div class="gift" data-id="g2">
+        <div class="bootie">🛏️</div>
+        <div class="gift-body">
+          <p class="gift-name">Cuna corral colecho con cambiador, PRIORI Madison gris</p>
+          <p class="gift-price">$349.900 <span>· Falabella</span></p>
+          <p class="claimed-by"></p>
+        </div>
         <div class="actions">
-          <a href="https://listado.mercadolibre.com.co/cuna-colecho-bebe" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <a class="gift-link" href="https://www.falabella.com.co/falabella-co/product/142710762/corral-cuna-colecho-priori-madison-gris/142710763" target="_blank" rel="noopener">Ver</a>
           <button class="claim-btn">Reservar</button>
         </div>
       </div>
 
-      <div class="gift" data-id="banera">
-        <h3 class="gift-title">Bañera Cambiador</h3>
-        <p class="gift-desc">Plegable con manguera de desagüe.</p>
-
-        <div class="claimed-by"></div>
+      <div class="gift" data-id="g3">
+        <div class="bootie">🛁</div>
+        <div class="gift-body">
+          <p class="gift-name">Bañera plegable con soporte, BALLA BALEIN</p>
+          <p class="gift-price"><span>Amazon · precio varía</span></p>
+          <p class="claimed-by"></p>
+        </div>
         <div class="actions">
-          <a href="https://listado.mercadolibre.com.co/banera-cambiador-bebe" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <a class="gift-link" href="https://www.amazon.com/-/es/BALLA-BALEIN-plegable-peque%C3%B1os-infantil/dp/B0FHD8H1QD" target="_blank" rel="noopener">Ver</a>
           <button class="claim-btn">Reservar</button>
         </div>
       </div>
 
-      <div class="gift" data-id="monitor">
-        <h3 class="gift-title">Monitor de Bebé</h3>
-        <p class="gift-desc">Con cámara visión nocturna y audio bidireccional.</p>
-
-        <div class="claimed-by"></div>
+      <div class="gift" data-id="g4">
+        <div class="bootie">🎹</div>
+        <div class="gift-body">
+          <p class="gift-name">Gimnasio de juego con piano musical, Jovow</p>
+          <p class="gift-price"><span>Amazon · precio varía</span></p>
+          <p class="claimed-by"></p>
+        </div>
         <div class="actions">
-          <a href="https://listado.mercadolibre.com.co/monitor-de-bebe-camara" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <a class="gift-link" href="https://www.amazon.com/dp/B0F2YXXLLX" target="_blank" rel="noopener">Ver</a>
           <button class="claim-btn">Reservar</button>
         </div>
       </div>
 
-      <div class="gift" data-id="set-ropa-1">
-        <h3 class="gift-title">Set de Bodies (0-3M)</h3>
-        <p class="gift-desc">Packs de 5 bodies manga corta/larga 100% algodón.</p>
-
-        <div class="claimed-by"></div>
+      <div class="gift" data-id="g5">
+        <div class="bootie">🎒</div>
+        <div class="gift-body">
+          <p class="gift-name">Pañalera tipo mochila con cambiador, CEI-CEI</p>
+          <p class="gift-price"><span>Amazon · precio varía</span></p>
+          <p class="claimed-by"></p>
+        </div>
         <div class="actions">
-          <a href="https://listado.mercadolibre.com.co/set-bodies-bebe-0-3-meses" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <a class="gift-link" href="https://www.amazon.com/CEI-CEI-Neoprene-Maternity-Waterproof-Insulated/dp/B0G7FKQZBK" target="_blank" rel="noopener">Ver</a>
           <button class="claim-btn">Reservar</button>
         </div>
       </div>
 
-      <div class="gift" data-id="set-ropa-2">
-        <h3 class="gift-title">Pijamas Enterizas (3-6M)</h3>
-        <p class="gift-desc">Con cremallera bidireccional y cremallera con protector.</p>
-
-        <div class="claimed-by"></div>
+      <div class="gift" data-id="g6">
+        <div class="bootie">🗑️</div>
+        <div class="gift-body">
+          <p class="gift-name">Contenedor de pañales con control de olor, Momcozy</p>
+          <p class="gift-price"><span>Amazon · precio varía</span></p>
+          <p class="claimed-by"></p>
+        </div>
         <div class="actions">
-          <a href="https://listado.mercadolibre.com.co/pijamas-enterizas-bebe-3-6-meses" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <a class="gift-link" href="https://www.amazon.com/dp/B0GH7TD97Y" target="_blank" rel="noopener">Ver</a>
           <button class="claim-btn">Reservar</button>
         </div>
       </div>
 
-      <div class="gift" data-id="panales-1">
-        <h3 class="gift-title">Pañales Etapa RN / 1</h3>
-        <p class="gift-desc">Pampers o Huggies (Cualquier cantidad es bienvenida).</p>
-
-        <div class="claimed-by"></div>
+      <div class="gift" data-id="g7">
+        <div class="bootie">🍼</div>
+        <div class="gift-body">
+          <p class="gift-name">Calentador de biberones, Momcozy</p>
+          <p class="gift-price">~US$49,99 <span>· Amazon</span></p>
+          <p class="claimed-by"></p>
+        </div>
         <div class="actions">
-          <a href="https://listado.mercadolibre.com.co/panales-etapa-rn-1" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <a class="gift-link" href="https://www.amazon.com/dp/B0BY26RDWQ" target="_blank" rel="noopener">Ver</a>
           <button class="claim-btn">Reservar</button>
         </div>
       </div>
 
-      <div class="gift" data-id="panales-2">
-        <h3 class="gift-title">Pañales Etapa 2 / 3</h3>
-        <p class="gift-desc">Para cuando crezca un poquito más 💙</p>
-
-        <div class="claimed-by"></div>
+      <div class="gift" data-id="g8">
+        <div class="bootie">🧷</div>
+        <div class="gift-body">
+          <p class="gift-name">Cambiador portátil impermeable, COMOMY</p>
+          <p class="gift-price"><span>Amazon · precio varía</span></p>
+          <p class="claimed-by"></p>
+        </div>
         <div class="actions">
-          <a href="https://listado.mercadolibre.com.co/panales-etapa-2-3" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <a class="gift-link" href="https://www.amazon.com/-/es/COMOMY-Cambiador-Impermeable-Seguridad-Antideslizante/dp/B0DP645F34" target="_blank" rel="noopener">Ver</a>
           <button class="claim-btn">Reservar</button>
         </div>
       </div>
 
-      <div class="gift" data-id="toallas">
-        <h3 class="gift-title">Kit de Toallas con Capucha</h3>
-        <p class="gift-desc">Suaves de microfibra o bambú + franelitas.</p>
-
-        <div class="claimed-by"></div>
+      <div class="gift" data-id="g9">
+        <div class="bootie">🧼</div>
+        <div class="gift-body">
+          <p class="gift-name">Kit de cepillos para biberones, Momcozy</p>
+          <p class="gift-price">~US$19,99 <span>· Amazon</span></p>
+          <p class="claimed-by"></p>
+        </div>
         <div class="actions">
-          <a href="https://listado.mercadolibre.com.co/toallas-bebe-con-capucha" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <a class="gift-link" href="https://www.amazon.com/dp/B0D9Y4XY7R" target="_blank" rel="noopener">Ver</a>
           <button class="claim-btn">Reservar</button>
         </div>
       </div>
 
-      <div class="gift" data-id="extractor">
-        <h3 class="gift-title">Extractor de Leche Eléctrico</h3>
-        <p class="gift-desc">Manos libres, recargable.</p>
-
-        <div class="claimed-by"></div>
+      <div class="gift" data-id="g10">
+        <div class="bootie">🍽️</div>
+        <div class="gift-body">
+          <p class="gift-name">Organizador apilable de biberones, Vtopmart</p>
+          <p class="gift-price"><span>Amazon · precio varía</span></p>
+          <p class="claimed-by"></p>
+        </div>
         <div class="actions">
-          <a href="https://listado.mercadolibre.com.co/extractor-de-leche-electrico" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <a class="gift-link" href="https://www.amazon.com/dp/B0CXLK9PJ9" target="_blank" rel="noopener">Ver</a>
           <button class="claim-btn">Reservar</button>
         </div>
       </div>
 
-      <div class="gift" data-id="esterilizador">
-        <h3 class="gift-title">Esterilizador de Biberones</h3>
-        <p class="gift-desc">Para microondas o eléctrico a vapor.</p>
-
-        <div class="claimed-by"></div>
-        <div class="actions">
-          <a href="https://listado.mercadolibre.com.co/esterilizador-de-biberones" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
-          <button class="claim-btn">Reservar</button>
+      <div class="gift" data-id="g11">
+        <div class="bootie">🍶</div>
+        <div class="gift-body">
+          <p class="gift-name">Biberones de vidrio anticólicos, Lansinoh (paquete de 4)</p>
+          <p class="gift-price"><span>Amazon · precio varía</span></p>
+          <p class="claimed-by"></p>
         </div>
-      </div>
-
-      <div class="gift" data-id="cojin-lactancia">
-        <h3 class="gift-title">Cojín de Lactancia</h3>
-        <p class="gift-desc">Ergonómico con funda lavable.</p>
-
-        <div class="claimed-by"></div>
         <div class="actions">
-          <a href="https://listado.mercadolibre.com.co/cojin-de-lactancia" target="_blank" rel="noopener" class="gift-link">Ver referencia ↗</a>
+          <a class="gift-link" href="https://www.amazon.com/dp/B0F4T2BDWB" target="_blank" rel="noopener">Ver</a>
           <button class="claim-btn">Reservar</button>
         </div>
       </div>
@@ -463,7 +456,6 @@
     <footer>Con amor, esperando a Marcelo 💙</footer>
   </div>
 <script>
-  // Storage fallback (localStorage for browsers, window.storage for sandbox environments)
   if (!window.storage) {
     window.storage = {
       async get(key) {
@@ -479,6 +471,10 @@
 
   const STORAGE_KEY = 'regalos-marcelo-reservas';
   let state = {};
+
+
+
+
 
   async function loadState(){
     try{
